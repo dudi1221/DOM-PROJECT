@@ -3,6 +3,12 @@ import data from "./onlineStoreData.js";
 let searchLine = document.querySelector('nav');
 let Home = document.getElementById('products');
 
+const goHome = document.querySelector('#home-icon');
+
+goHome.addEventListener('click', () => {
+    location.reload();
+});
+
 function createCard(element){
     let productCard = document.createElement('div');
     productCard.style.borderRadius = '15px';
@@ -398,14 +404,121 @@ function editProduct(idProduct){
     })
 }
 
-// buttomEdit.addEventListener('click', () => {
-//     data.push({
-//         id: data.length + 1,
-//         title: inputTitle.value,
-//         price: inputPrice.value,
-//         description: inputDescription.value,
-//         category: inputCategory.value,
-//         image: inputImage.value
-//     })
-//     console.log(data);
-// })
+const plus = document.querySelector('#plus-icon');
+plus.addEventListener('click', () => {
+    Home.replaceChildren();
+        searchLine.remove();
+        addProduct();
+})
+
+function addProduct(){
+    Home.style.display = 'flex';
+    Home.style.flexDirection = 'column';
+    Home.style.alignItems = 'center';
+
+    const mainTitle = document.createElement('div');
+    mainTitle.style.display = 'flex';
+    mainTitle.style.justifyContent = 'center';
+    mainTitle.style.alignItems = 'center';
+    Home.appendChild(mainTitle);
+
+    const textMainTitle = document.createElement('h1');
+    textMainTitle.textContent = 'Add new Product'
+    textMainTitle.style.padding = '20px';
+    mainTitle.appendChild(textMainTitle);
+
+    const edit = document.createElement('div');
+    edit.style.display = 'flex';
+    edit.style.flexDirection = 'column';
+    edit.style.margin = '0 auto';
+    edit.style.width = '900px';
+    Home.appendChild(edit);
+
+    const title = document.createElement('h3');
+    title.textContent = 'Title';
+    title.style.alignItems = 'start';
+    edit.appendChild(title);
+
+    const inputTitle = document.createElement('input');
+    inputTitle.placeholder = 'Enter a title for the product';
+    inputTitle.style.width = '100%';
+    inputTitle.style.padding = '10px';
+    edit.appendChild(inputTitle);
+
+    const category = document.createElement('h3');
+    category.textContent = 'Category';
+    category.style.alignItems = 'start';
+    edit.appendChild(category);
+
+    const inputCategory = document.createElement('input');
+    inputCategory.placeholder = 'Enter a category for the product';
+    inputCategory.style.width = '100%';
+    inputCategory.style.padding = '10px';
+    edit.appendChild(inputCategory);
+
+    const price = document.createElement('h3');
+    price.textContent = 'Price';
+    price.style.alignItems = 'start';
+    edit.appendChild(price);
+
+    const inputPrice = document.createElement('input');
+    inputPrice.placeholder = 'Enter a price for the product';
+    inputPrice.style.width = '100%';
+    inputPrice.style.padding = '10px';
+    edit.appendChild(inputPrice);
+
+    const image = document.createElement('h3');
+    image.textContent = 'Image URL';
+    image.style.alignItems = 'start';
+    edit.appendChild(image);
+
+    const inputImage = document.createElement('input');
+    inputImage.placeholder = 'Enter a URL for a product image';
+    inputImage.style.width = '100%';
+    inputImage.style.padding = '10px';
+    edit.appendChild(inputImage);
+
+    const quantity = document.createElement('h3');
+    quantity.textContent = 'Quantity';
+    quantity.style.alignItems = 'start';
+    edit.appendChild(quantity);
+
+    const inputQuantity = document.createElement('input');
+    inputQuantity.placeholder = 'Enter product quantity';
+    inputQuantity.style.width = '100%';
+    inputQuantity.style.padding = '10px';
+    edit.appendChild(inputQuantity);
+
+    const description = document.createElement('h3');
+    description.textContent = 'Description';
+    description.style.alignItems = 'start';
+    edit.appendChild(description);
+
+    const inputDescription = document.createElement('input');
+    inputDescription.placeholder = 'Enter a product description';
+    inputDescription.style.width = '100%';
+    inputDescription.style.padding = '10px';
+    edit.appendChild(inputDescription);
+
+    const buttomAdd = document.createElement('buttom');
+    buttomAdd.textContent = 'ADD';
+    buttomAdd.style.padding = '10px';
+    buttomAdd.style.border = '2px solid black';
+    buttomAdd.style.textAlign = 'center';
+    description.style.alignItems = 'start';
+    buttomAdd.style.width = '10%';
+    buttomAdd.style.margin = '10px';
+    edit.appendChild(buttomAdd);
+
+    buttomAdd.addEventListener('click', () => {
+        data.push({
+            id: data.length + 1,
+            title: inputTitle.value,
+            price: inputPrice.value,
+            description: inputDescription.value,
+            category: inputCategory.value,
+            image: inputImage.value
+        })
+        console.log(data);
+    })
+}
